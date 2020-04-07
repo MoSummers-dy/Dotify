@@ -1,5 +1,6 @@
 package edu.washington.dy2018.dotify
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         btnChangeUser.setOnClickListener{ btnChangeUserClicked: View ->
             changeUser(btnChangeUserClicked)
         }
+
+        ivAlbumCover.setOnLongClickListener(){ coverLongClicked: View ->
+            changeTextViewColor(coverLongClicked)
+            true
+        }
     }
 
     fun changeUser(view: View) {
@@ -44,13 +50,25 @@ class MainActivity : AppCompatActivity() {
 
             btnChangeUser.text = "Apply"
         } else {
-            tvUserName.text = etUserName.text
-            tvUserName.visibility = View.VISIBLE
+            val usernameInput = etUserName.text.toString()
+            if (usernameInput.isEmpty()){
+                Toast.makeText(this, "Please enter a valid username", Toast.LENGTH_SHORT).show()
+            } else {
+                tvUserName.text = etUserName.text
+                tvUserName.visibility = View.VISIBLE
 
-            etUserName.visibility = View.INVISIBLE
+                etUserName.visibility = View.INVISIBLE
 
-            btnChangeUser.text = "Change user"
+                btnChangeUser.text = "Change user"
+            }
         }
+    }
 
+    fun changeTextViewColor(view: View) {
+        val randomColor = Color.rgb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
+        tvPlaysNum.setTextColor(randomColor)
+        tvUserName.setTextColor(randomColor)
+        tvSinger.setTextColor(randomColor)
+        tvSongName.setTextColor(randomColor)
     }
 }

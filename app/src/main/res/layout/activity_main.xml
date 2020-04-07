@@ -30,14 +30,14 @@
         android:id="@+id/ivAlbumCover"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/mingyuetianya_cover"
-        app:layout_constraintDimensionRatio="1:1"
         android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@+id/btnChangeUser"
+        android:src="@drawable/mingyuetianya_cover"
         app:layout_constraintBottom_toTopOf="@id/tvSongName"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangeUser"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/tvSongName"
@@ -82,42 +82,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:contentDescription="Previous"
         android:foreground="?selectableItemBackground"
         android:src="@drawable/ic_previous"
-        app:layout_constraintTop_toBottomOf="@id/tvPlaysNum"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintRight_toLeftOf="@id/btnPlay"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:contentDescription="Previous" />
+        app:layout_constraintRight_toLeftOf="@id/btnPlay"
+        app:layout_constraintTop_toBottomOf="@id/tvPlaysNum"
+        app:layout_constraintVertical_bias="0.5" />
 
     <ImageButton
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:contentDescription="Play"
         android:foreground="?selectableItemBackground"
         android:src="@drawable/ic_play"
-        app:layout_constraintTop_toTopOf="@id/btnPrevious"
         app:layout_constraintBottom_toBottomOf="@id/btnPrevious"
-        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintLeft_toRightOf="@id/btnPrevious"
         app:layout_constraintRight_toLeftOf="@id/btnNext"
-        android:contentDescription="Play" />
+        app:layout_constraintTop_toTopOf="@id/btnPrevious"
+        app:layout_constraintVertical_bias="0.5" />
 
     <ImageButton
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:contentDescription="Next"
         android:foreground="?selectableItemBackground"
         android:src="@drawable/ic_next"
-        app:layout_constraintTop_toTopOf="@id/btnPlay"
         app:layout_constraintBottom_toBottomOf="@id/btnPlay"
-        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintLeft_toRightOf="@id/btnPlay"
         app:layout_constraintRight_toRightOf="parent"
-        android:contentDescription="Next" />
+        app:layout_constraintTop_toTopOf="@id/btnPlay"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/etUserName"
@@ -125,8 +125,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintTop_toTopOf="@id/tvUserName"
         app:layout_constraintBottom_toBottomOf="@id/tvUserName"
-        app:layout_constraintLeft_toLeftOf="@id/tvUserName" />
+        app:layout_constraintLeft_toLeftOf="@id/tvUserName"
+        app:layout_constraintTop_toTopOf="@id/tvUserName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
