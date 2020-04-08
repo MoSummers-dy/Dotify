@@ -1,5 +1,6 @@
 # Dotify - Homework 1
 Author: Diana Dai
+
 Date: 4/9/2020
 
 ## App Description
