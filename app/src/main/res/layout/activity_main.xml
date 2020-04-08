@@ -97,8 +97,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSinger"
-        app:layout_constraintBottom_toTopOf="@id/barPlayButtons"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSinger" />
 
     <ImageButton
         android:id="@+id/btnPrevious"

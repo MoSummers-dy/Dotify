@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/overall_padding"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/barUserName">
 
         <TextView
             android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="10"
             android:text="@string/username"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-        <EditText
-            android:id="@+id/etUserName"
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:autofillHints="Enter username" />
 
         <Button
             android:id="@+id/btnChangeUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/change_user" />
+    </LinearLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    <EditText
+        android:id="@+id/etUserName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:autofillHints="Enter username" />
 
     <ImageView
+        android:layout_marginTop="@dimen/overall_padding"
+        android:layout_below="@id/barUserName"
         android:id="@+id/ivAlbumCover"
         android:layout_width="match_parent"
         android:layout_height="350dp"
@@ -44,13 +49,18 @@
 
     <TextView
         android:id="@+id/tvSongName"
+        android:layout_marginTop="@dimen/overall_padding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/ivAlbumCover"
+        android:layout_centerHorizontal="true"
         android:text="@string/song_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
         android:id="@+id/tvSinger"
+        android:layout_below="@id/tvSongName"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -61,21 +71,27 @@
 
     <TextView
         android:id="@+id/tvPlaysNum"
+        android:layout_below="@id/tvSinger"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/number_plays"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/darkPurple" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_below="@id/tvPlaysNum"
+        android:layout_alignParentBottom="true" >
+
         <ImageButton
             android:id="@+id/btnPrevious"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/btnPlay"
             android:background="@android:color/transparent"
             android:contentDescription="@string/skip_to_previous"
             android:foreground="?selectableItemBackground"
@@ -83,9 +99,10 @@
 
         <ImageButton
             android:id="@+id/btnPlay"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:background="@android:color/transparent"
             android:contentDescription="@string/play"
             android:foreground="?selectableItemBackground"
@@ -93,13 +110,14 @@
 
         <ImageButton
             android:id="@+id/btnNext"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/btnPlay"
             android:background="@android:color/transparent"
             android:contentDescription="@string/skip_to_next"
             android:foreground="?selectableItemBackground"
             android:src="@drawable/ic_next" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</RelativeLayout>
