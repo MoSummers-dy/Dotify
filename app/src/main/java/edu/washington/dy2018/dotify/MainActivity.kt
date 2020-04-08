@@ -18,30 +18,30 @@ class MainActivity : AppCompatActivity() {
         var randomPlay: Int = Random.nextInt(1000, 10000000)
         tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
 
-        btnPlay.setOnClickListener{ btnPlayClicked: View ->
+        btnPlay.setOnClickListener{
             randomPlay += 1
             tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
         }
 
-        btnPrevious.setOnClickListener{ btnPrevClicked: View ->
+        btnPrevious.setOnClickListener{
             Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show()
         }
 
-        btnNext.setOnClickListener{ btnNextClicked: View ->
+        btnNext.setOnClickListener{
             Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
         }
 
-        btnChangeUser.setOnClickListener{ btnChangeUserClicked: View ->
-            changeUser(btnChangeUserClicked)
+        btnChangeUser.setOnClickListener{
+            changeUser()
         }
 
-        ivAlbumCover.setOnLongClickListener(){ coverLongClicked: View ->
-            changeTextViewColor(coverLongClicked)
+        ivAlbumCover.setOnLongClickListener {
+            changeTextViewColor()
             true
         }
     }
 
-    fun changeUser(view: View) {
+    private fun changeUser() {
         if (btnChangeUser.text == "Change user") {
             tvUserName.visibility = View.INVISIBLE
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun changeTextViewColor(view: View) {
+    private fun changeTextViewColor() {
         val randomColor = Color.rgb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
         tvPlaysNum.setTextColor(randomColor)
         tvUserName.setTextColor(randomColor)
