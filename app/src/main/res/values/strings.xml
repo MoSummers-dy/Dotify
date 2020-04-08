@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Dotify</string>
+    <string name="change_user">Change user</string>
+    <string name="apply">Apply</string>
+    <string name="username">Iron Man</string>
+    <string name="album_cover">album cover</string>
+    <string name="song_name">明月天涯</string>
+    <string name="number_plays">number plays</string>
+    <string name="singer_name">五音JW</string>
+    <string name="skip_to_previous">Previous</string>
+    <string name="play">Play</string>
+    <string name="skip_to_next">Next</string>
+    <string name="play_messages">%1$d plays</string>
 </resources>

@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         etUserName.visibility = View.INVISIBLE
 
         var randomPlay: Int = Random.nextInt(1000, 10000000)
-        tvPlaysNum.text = "${randomPlay.toString()} plays"
+        tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
 
         btnPlay.setOnClickListener{ btnPlayClicked: View ->
             randomPlay += 1
-            tvPlaysNum.text = "${randomPlay.toString()} plays"
+            tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
         }
 
         btnPrevious.setOnClickListener{ btnPrevClicked: View ->
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             etUserName.setText(tvUserName.text)
             etUserName.visibility = View.VISIBLE
 
-            btnChangeUser.text = "Apply"
+            btnChangeUser.text = getString(R.string.apply)
         } else {
             val usernameInput = etUserName.text.toString()
             if (usernameInput.isEmpty()){
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
                 etUserName.visibility = View.INVISIBLE
 
-                btnChangeUser.text = "Change user"
+                btnChangeUser.text = getString(R.string.change_user)
             }
         }
     }
