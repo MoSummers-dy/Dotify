@@ -44,10 +44,8 @@ class MainActivity : AppCompatActivity() {
     private fun changeUser() {
         if (btnChangeUser.text == "Change user") {
             tvUserName.visibility = View.INVISIBLE
-
             etUserName.setText(tvUserName.text)
             etUserName.visibility = View.VISIBLE
-
             btnChangeUser.text = getString(R.string.apply)
         } else {
             val usernameInput = etUserName.text.toString()
@@ -56,9 +54,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 tvUserName.text = etUserName.text
                 tvUserName.visibility = View.VISIBLE
-
                 etUserName.visibility = View.INVISIBLE
-
                 btnChangeUser.text = getString(R.string.change_user)
             }
         }
