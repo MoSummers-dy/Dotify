@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeUser() {
-        if (btnChangeUser.text == "Change user") {
+        if (btnChangeUser.text == "Change User") {
             tvUserName.visibility = View.INVISIBLE
             etUserName.setText(tvUserName.text)
             etUserName.visibility = View.VISIBLE
