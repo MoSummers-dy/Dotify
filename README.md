@@ -15,3 +15,4 @@ Dotify is an Android Music app which users can listen to music on the cloud. Thi
 - Create another xml file that uses the a different ViewGroup type than your original.
 
 ## Screenshots (emulator)
+![Homework 1 preview](./screenshots/hw1.png)
