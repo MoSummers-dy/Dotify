@@ -4,7 +4,7 @@ Author: Diana Dai
 Date: 4/9/2020
 
 ## App Description
-Dotify is an Android Music app which users can listen to music on the cloud. This is the concept screen.
+Dotify is an Android Music app which users can listen to music on the cloud. This is the concept screen with some simple functions. Users can click the three buttons at the bottom, change the user name, and change the text color if they long press on the album cover.
 
 ## Extra Credits Attempted
 - A user is not allowed to apply a new username if the edit text field is empty
