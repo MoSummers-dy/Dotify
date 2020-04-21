@@ -13,4 +13,6 @@
     <string name="play_messages">%1$d plays</string>
     <string name="all_songs">All Songs</string>
     <string name="shuffle">Shuffle</string>
+    <string name="ivSong_description">image of the song</string>
+    <string name="username_hint">enter the user name</string>
 </resources>

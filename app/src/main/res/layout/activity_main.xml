@@ -28,7 +28,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btnChangeUser"
         app:layout_constraintTop_toTopOf="@id/tvUserName"
-        android:autofillHints="Enter username" />
+        android:autofillHints="Enter username"
+        android:hint="@string/username_hint"/>
 
     <Button
         android:id="@+id/btnChangeUser"
