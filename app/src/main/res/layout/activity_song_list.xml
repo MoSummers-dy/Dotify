@@ -9,40 +9,54 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSongs"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/conSelectedSong"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/barSelectedSongs"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_song"/>
+        tools:listitem="@layout/item_song" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barSelectedSongs"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/conSelectedSong"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="tvSelectedSongName, btnShuffle"/>
-
-    <TextView
-        android:id="@+id/tvSelectedSongName"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toTopOf="@id/barSelectedSongs"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/btnShuffle"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Song Name"
-        android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/btnShuffle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/tvSelectedSongName"
-        app:layout_constraintLeft_toRightOf="@id/tvSelectedSongName"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvSelectedSongName"
-        android:text="@string/shuffle"/>
+        android:background="@color/white"
+        app:layout_constraintHorizontal_chainStyle="spread">
+
+
+        <TextView
+            android:id="@+id/tvSelectedSongName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tvSelectedArtistName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Song Name - " />
+
+        <TextView
+            android:id="@+id/tvSelectedArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/tvSelectedSongName"
+            app:layout_constraintRight_toLeftOf="@id/btnShuffle"
+            app:layout_constraintTop_toTopOf="@id/tvSelectedSongName"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectedSongName"
+            tools:text="Artist Name"/>
+
+        <Button
+            android:id="@+id/btnShuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shuffle"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectedSongName"
+            app:layout_constraintLeft_toRightOf="@id/tvSelectedArtistName"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSelectedSongName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
