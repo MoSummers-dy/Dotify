@@ -9,32 +9,48 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+    private var randomPlay:Int = Random.nextInt(1000, 10000000)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        etUserName.visibility = View.INVISIBLE
 
-        var randomPlay: Int = Random.nextInt(1000, 10000000)
+        etUserName.visibility = View.INVISIBLE
         tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
 
+        initPlayClick()
+        initPrevClick()
+        initNextClick()
+        initChangeUserClick()
+        initShowCoverLongClick()
+    }
+
+    private fun initPlayClick() {
         btnPlay.setOnClickListener{
             randomPlay += 1
             tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
         }
+    }
 
+    private fun initPrevClick() {
         btnPrevious.setOnClickListener{
             Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show()
         }
+    }
 
+    private fun initNextClick() {
         btnNext.setOnClickListener{
             Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
         }
+    }
 
+    private fun initChangeUserClick() {
         btnChangeUser.setOnClickListener{
             changeUser()
         }
+    }
 
+    private fun initShowCoverLongClick() {
         ivAlbumCover.setOnLongClickListener {
             changeTextViewColor()
             true
