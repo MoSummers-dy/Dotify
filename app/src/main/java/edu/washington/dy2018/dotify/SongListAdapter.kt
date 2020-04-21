@@ -25,6 +25,11 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
         holder.bind(song)
     }
 
+    fun change(newSongs: List<Song>) {
+        listOfSongs = newSongs
+        notifyDataSetChanged()
+    }
+
     class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val tvSongName = itemView.findViewById<TextView>(R.id.tvSongName)
         private val tvArtistName = itemView.findViewById<TextView>(R.id.tvArtistName)

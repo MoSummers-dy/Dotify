@@ -29,34 +29,24 @@
 
 
         <TextView
-            android:id="@+id/tvSelectedSongName"
+            android:id="@+id/tvSelectedSongInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/tvSelectedArtistName"
+            app:layout_constraintRight_toLeftOf="@id/btnShuffle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Song Name - " />
-
-        <TextView
-            android:id="@+id/tvSelectedArtistName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/tvSelectedSongName"
-            app:layout_constraintRight_toLeftOf="@id/btnShuffle"
-            app:layout_constraintTop_toTopOf="@id/tvSelectedSongName"
-            app:layout_constraintBottom_toBottomOf="@id/tvSelectedSongName"
-            tools:text="Artist Name"/>
 
         <Button
             android:id="@+id/btnShuffle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shuffle"
-            app:layout_constraintBottom_toBottomOf="@id/tvSelectedSongName"
-            app:layout_constraintLeft_toRightOf="@id/tvSelectedArtistName"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectedSongInfo"
+            app:layout_constraintLeft_toRightOf="@id/tvSelectedSongInfo"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvSelectedSongName" />
+            app:layout_constraintTop_toTopOf="@id/tvSelectedSongInfo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
