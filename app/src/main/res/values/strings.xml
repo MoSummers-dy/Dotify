@@ -11,4 +11,6 @@
     <string name="play">Play</string>
     <string name="skip_to_next">Next</string>
     <string name="play_messages">%1$d plays</string>
+    <string name="all_songs">All Songs</string>
+    <string name="shuffle">Shuffle</string>
 </resources>
