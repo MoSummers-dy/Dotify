@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
@@ -30,7 +31,7 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
         notifyDataSetChanged()
     }
 
-    class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val tvSongName = itemView.findViewById<TextView>(R.id.tvSongName)
         private val tvArtistName = itemView.findViewById<TextView>(R.id.tvArtistName)
         private val ivSongCover = itemView.findViewById<ImageView>(R.id.ivSongImage)
@@ -39,6 +40,10 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
             tvSongName.text = song.title
             tvArtistName.text = song.artist
             ivSongCover.setImageResource(song.smallImageID)
+
+            itemView.setOnClickListener{
+                onSongClickListener?.invoke(song)
+            }
         }
     }
 }

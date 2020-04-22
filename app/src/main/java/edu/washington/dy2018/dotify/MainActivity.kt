@@ -83,4 +83,8 @@ class MainActivity : AppCompatActivity() {
         tvSinger.setTextColor(randomColor)
         tvSongName.setTextColor(randomColor)
     }
+
+    companion object {
+        const val SONG_KEY = "SONG_KEY"
+    }
 }
