@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
@@ -26,8 +27,15 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
     }
 
     fun change(newSongs: List<Song>) {
+        // normal way of updating the songs list
+        // listOfSongs = newSongs
+        // notifyDataSetChanged()
+
+        // animated way of updating the songs list
+        val callback = SongDiffCallback(listOfSongs, newSongs)
+        val diffResult = DiffUtil.calculateDiff(callback)
+        diffResult.dispatchUpdatesTo(this)
         listOfSongs = newSongs
-        notifyDataSetChanged()
     }
 
     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
