@@ -12,7 +12,7 @@ Dotify is an Android Music app which users can listen to music on the cloud. It 
 - When a user presses shuffle, the list should animate the changes using DiffUtil (+1)
 
 ## Screenshots (emulator)
-Song list view
+Song list view (the first screen):
 <img src="./screenshots/hw2-firstActivity.png" alt="song list activity" width="200" height="420" />
 
 <br/>
