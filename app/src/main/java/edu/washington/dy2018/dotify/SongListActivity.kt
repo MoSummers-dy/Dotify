@@ -16,6 +16,8 @@ class SongListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_list)
 
+        title = getString(R.string.all_songs)
+
         rvSongs.adapter = songAdapter
 
         initShuffleClick()
