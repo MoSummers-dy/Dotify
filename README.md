@@ -13,6 +13,7 @@ Dotify is an Android Music app which users can listen to music on the cloud. It 
 
 ## Screenshots (emulator)
 Song list view (the first screen):
+
 <img src="./screenshots/hw2-firstActivity.png" alt="song list activity" width="200" height="420" />
 
 <br/>
