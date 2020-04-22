@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.ericchee.songdataprovider.Song
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
@@ -15,14 +16,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        etUserName.visibility = View.INVISIBLE
-        tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
+        val song = intent.getParcelableExtra<Song>(SONG_KEY)
 
+        initSongInfo(song)
         initPlayClick()
         initPrevClick()
         initNextClick()
         initChangeUserClick()
         initShowCoverLongClick()
+    }
+
+    private fun initSongInfo(song: Song?) {
+        etUserName.visibility = View.INVISIBLE
+        tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
+        song?.let {
+            tvSongName.text = song.title
+            tvSinger.text = song.artist
+            ivAlbumCover.setImageResource(song.largeImageID)
+        }
     }
 
     private fun initPlayClick() {

@@ -28,6 +28,8 @@
         app:layout_constraintTop_toTopOf="@id/ivSongImage"
         app:layout_constraintBottom_toBottomOf="@id/ivSongImage"
         android:layout_marginStart="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textSize="20sp"/>
 
     <TextView
@@ -37,6 +39,8 @@
         tools:text="Artist name"
         app:layout_constraintLeft_toLeftOf="@id/tvSongName"
         app:layout_constraintTop_toBottomOf="@id/tvSongName"
+        android:maxLines="1"
+        android:ellipsize="end"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

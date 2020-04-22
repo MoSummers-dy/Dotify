@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_song_list.*
 class SongListActivity : AppCompatActivity() {
     private val listOfSongs = SongDataProvider.getAllSongs()
     private val songAdapter= SongListAdapter(listOfSongs)
+    private var currSong: Song? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,7 @@ class SongListActivity : AppCompatActivity() {
 
         initShuffleClick()
         initAdapterClick()
+        initMiniPlayerClick()
     }
 
     fun initShuffleClick() {
@@ -33,9 +35,16 @@ class SongListActivity : AppCompatActivity() {
 
     fun initAdapterClick() {
         songAdapter.onSongClickListener = {someSong: Song ->
-            // intent.putExtra(SONG_KEY, someSong)
-            // val selectedSong = intent.getParcelableArrayExtra<Song>(SONG_KEY)
-            tvSelectedSongInfo.text = "${someSong.title} - ${someSong.artist}"
+            tvSelectedSongInfo.text = getString(R.string.selected_info, someSong.title, someSong.artist)
+            currSong = someSong
+        }
+    }
+
+    fun initMiniPlayerClick() {
+        miniPlayer.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SONG_KEY, currSong)
+            startActivity(intent)
         }
     }
 }

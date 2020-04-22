@@ -11,21 +11,22 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/conSelectedSong"
+        app:layout_constraintBottom_toTopOf="@id/miniPlayer"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_song" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/conSelectedSong"
+        android:id="@+id/miniPlayer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:elevation="5dp"
+        android:foreground="?selectableItemBackground"
         android:background="@color/white">
-
 
         <TextView
             android:id="@+id/tvSelectedSongInfo"
