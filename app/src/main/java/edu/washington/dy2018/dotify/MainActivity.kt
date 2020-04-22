@@ -3,6 +3,7 @@ package edu.washington.dy2018.dotify
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val song = intent.getParcelableExtra<Song>(SONG_KEY)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initSongInfo(song)
         initPlayClick()
@@ -97,5 +100,13 @@ class MainActivity : AppCompatActivity() {
         tvUserName.setTextColor(randomColor)
         tvSinger.setTextColor(randomColor)
         tvSongName.setTextColor(randomColor)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
