@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
@@ -12,6 +13,7 @@ import com.ericchee.songdataprovider.Song
 class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
     private var listOfSongs: List<Song> = initialListOfSongs.toList()
     var onSongClickListener: ((song: Song) -> Unit) ?= null
+    var onSongLongClickListener: ((song: Song) -> Unit) ?= null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):SongViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
@@ -50,6 +52,11 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
 
             itemView.setOnClickListener{
                 onSongClickListener?.invoke(song)
+            }
+
+            itemView.setOnLongClickListener{
+                onSongLongClickListener?.invoke(song)
+                true
             }
         }
     }
