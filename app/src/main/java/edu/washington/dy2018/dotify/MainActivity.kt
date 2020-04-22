@@ -12,6 +12,10 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
     private var randomPlay:Int = Random.nextInt(1000, 10000000)
 
+    companion object {
+        const val SONG_KEY = "SONG_KEY"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -93,9 +97,5 @@ class MainActivity : AppCompatActivity() {
         tvUserName.setTextColor(randomColor)
         tvSinger.setTextColor(randomColor)
         tvSongName.setTextColor(randomColor)
-    }
-
-    companion object {
-        const val SONG_KEY = "SONG_KEY"
     }
 }

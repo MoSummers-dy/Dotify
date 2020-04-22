@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/ivSongImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/default_height_width"
+        android:layout_height="@dimen/default_height_width"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,10 +27,10 @@
         app:layout_constraintLeft_toRightOf="@id/ivSongImage"
         app:layout_constraintTop_toTopOf="@id/ivSongImage"
         app:layout_constraintBottom_toBottomOf="@id/ivSongImage"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/default_margin"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/large_text"/>
 
     <TextView
         android:id="@+id/tvArtistName"

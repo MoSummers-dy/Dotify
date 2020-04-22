@@ -26,21 +26,21 @@ class SongListActivity : AppCompatActivity() {
         initMiniPlayerClick()
     }
 
-    fun initShuffleClick() {
+    private fun initShuffleClick() {
         btnShuffle.setOnClickListener{
             val newSongs = listOfSongs.shuffled()
             songAdapter.change(newSongs)
         }
     }
 
-    fun initAdapterClick() {
+    private fun initAdapterClick() {
         songAdapter.onSongClickListener = {someSong: Song ->
             tvSelectedSongInfo.text = getString(R.string.selected_info, someSong.title, someSong.artist)
             currSong = someSong
         }
     }
 
-    fun initMiniPlayerClick() {
+    private fun initMiniPlayerClick() {
         miniPlayer.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra(SONG_KEY, currSong)
