@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val song = intent.getParcelableExtra<Song>(SONG_KEY)
 
+        // back button display
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initSongInfo(song)

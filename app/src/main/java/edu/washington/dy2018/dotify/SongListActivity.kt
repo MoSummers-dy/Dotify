@@ -36,19 +36,19 @@ class SongListActivity : AppCompatActivity() {
     }
 
     private fun initAdapterClick() {
-        songAdapter.onSongClickListener = {someSong: Song ->
-            tvSelectedSongInfo.text = getString(R.string.selected_info, someSong.title, someSong.artist)
-            currSong = someSong
+        songAdapter.onSongClickListener = {selectedSong: Song ->
+            tvSelectedSongInfo.text = getString(R.string.selected_info, selectedSong.title, selectedSong.artist)
+            currSong = selectedSong
         }
     }
 
     private fun initAdapterLongClick() {
-        songAdapter.onSongLongClickListener = { someSong: Song ->
+        songAdapter.onSongLongClickListener = { selectedSong: Song ->
             val newSongs = listOfSongs.toMutableList()
-            newSongs.remove(someSong)
+            newSongs.remove(selectedSong)
             listOfSongs = newSongs
             songAdapter.removeUpdate(listOfSongs)
-            Toast.makeText(this, "${someSong.title} was deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${selectedSong.title} was deleted", Toast.LENGTH_SHORT).show()
         }
     }
 
