@@ -10,7 +10,7 @@ import edu.washington.dy2018.dotify.MainActivity.Companion.SONG_KEY
 import kotlinx.android.synthetic.main.activity_song_list.*
 
 class SongListActivity : AppCompatActivity() {
-    private val listOfSongs = SongDataProvider.getAllSongs()
+    private var listOfSongs = SongDataProvider.getAllSongs()
     private val songAdapter= SongListAdapter(listOfSongs)
     private var currSong: Song? = null
 
@@ -31,7 +31,7 @@ class SongListActivity : AppCompatActivity() {
     private fun initShuffleClick() {
         btnShuffle.setOnClickListener{
             val newSongs = listOfSongs.shuffled()
-            songAdapter.change(newSongs)
+            songAdapter.shuffleUpdate(newSongs)
         }
     }
 
@@ -44,6 +44,10 @@ class SongListActivity : AppCompatActivity() {
 
     private fun initAdapterLongClick() {
         songAdapter.onSongLongClickListener = { someSong: Song ->
+            val newSongs = listOfSongs.toMutableList()
+            newSongs.remove(someSong)
+            listOfSongs = newSongs
+            songAdapter.removeUpdate(listOfSongs)
             Toast.makeText(this, "${someSong.title} was deleted", Toast.LENGTH_SHORT).show()
         }
     }

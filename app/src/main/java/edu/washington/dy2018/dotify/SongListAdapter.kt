@@ -28,16 +28,17 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
         holder.bind(song)
     }
 
-    fun change(newSongs: List<Song>) {
-        // normal way of updating the songs list
-        // listOfSongs = newSongs
-        // notifyDataSetChanged()
-
+    fun shuffleUpdate(newSongs: List<Song>) {
         // animated way of updating the songs list
         val callback = SongDiffCallback(listOfSongs, newSongs)
         val diffResult = DiffUtil.calculateDiff(callback)
         diffResult.dispatchUpdatesTo(this)
         listOfSongs = newSongs
+    }
+
+    fun removeUpdate(newSongs: List<Song>) {
+        listOfSongs = newSongs
+        notifyDataSetChanged()
     }
 
     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
