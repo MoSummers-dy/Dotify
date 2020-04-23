@@ -30,7 +30,7 @@ class SongListActivity : AppCompatActivity() {
 
     private fun initShuffleClick() {
         btnShuffle.setOnClickListener{
-            val newSongs = listOfSongs.shuffled()
+            val newSongs = listOfSongs.toMutableList().apply { shuffle() }
             songAdapter.shuffleUpdate(newSongs)
             // scroll to the top of the screen on every shuffle
             rvSongs.scrollToPosition(0)
