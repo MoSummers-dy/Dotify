@@ -32,6 +32,8 @@ class SongListActivity : AppCompatActivity() {
         btnShuffle.setOnClickListener{
             val newSongs = listOfSongs.shuffled()
             songAdapter.shuffleUpdate(newSongs)
+            // scroll to the top of the screen on every shuffle
+            rvSongs.scrollToPosition(0)
         }
     }
 
@@ -56,7 +58,10 @@ class SongListActivity : AppCompatActivity() {
         miniPlayer.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra(SONG_KEY, currSong)
-            startActivity(intent)
+            // show activity B only when some song is selected
+            currSong?.let {
+                startActivity(intent)
+            }
         }
     }
 }
