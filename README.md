@@ -4,7 +4,7 @@ Author: Diana Dai
 Date: 4/23/2020
 
 ## App Description
-Dotify is an Android Music app which users can listen to music on the cloud. It displays a list of songs with a mini player at the bottom. The mini player shows the title and artist that the user has chosen. Users can also shuffle the list of songs with the shuffle button. Once the user has decide on a particular song, they can view more detailed information such as number of plays on another screen.
+Dotify is an Android Music app which users can listen to music on the cloud. It displays a list of songs with a mini player at the bottom. The mini player shows the title and artist that the user has chosen. Users can also shuffle the list of songs with the shuffle button. Once the user has decide on a particular song, they can view more detailed information such as the number of plays on another screen.
 
 ## Extra Credits Attempted
 - Show a stock Android back arrow button, ←, in the Header/Toolbar of Activity B. When clicked, it navigation back to SongListActivity (+.25)
