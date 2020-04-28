@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify
+package edu.washington.dy2018.dotify.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
-import edu.washington.dy2018.dotify.MainActivity.Companion.SONG_KEY
+import edu.washington.dy2018.dotify.Activities.MainActivity.Companion.SONG_KEY
+import edu.washington.dy2018.dotify.R
+import edu.washington.dy2018.dotify.SongListAdapter
 import kotlinx.android.synthetic.main.activity_song_list.*
 
 class SongListActivity : AppCompatActivity() {
     private var listOfSongs = SongDataProvider.getAllSongs()
-    private val songAdapter= SongListAdapter(listOfSongs)
+    private val songAdapter=
+        SongListAdapter(listOfSongs)
     private var currSong: Song? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

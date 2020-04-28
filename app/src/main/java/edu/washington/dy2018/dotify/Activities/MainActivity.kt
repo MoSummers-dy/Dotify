@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify
+package edu.washington.dy2018.dotify.Activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
+import edu.washington.dy2018.dotify.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
