@@ -13,8 +13,10 @@ import kotlin.random.Random
 
 class NowPlayingFragment:Fragment() {
     private var randomPlay: Int? = null
+    private var currSong: Song? = null
 
     companion object {
+        val TAG: String = NowPlayingFragment::class.java.simpleName
         const val SONG_KEY = "SONG_KEY"
     }
 
@@ -24,7 +26,7 @@ class NowPlayingFragment:Fragment() {
         randomPlay = Random.nextInt(1000, 10000)
 
         arguments?.let { args ->
-            val song = args.getParcelable<Song>(SONG_KEY)
+            currSong = args.getParcelable<Song>(SONG_KEY)
         }
     }
 
@@ -40,9 +42,19 @@ class NowPlayingFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initSongInfo(currSong)
         initPlayClick()
         initPrevClick()
         initNextClick()
+    }
+
+    private fun initSongInfo(song: Song?) {
+        tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
+        song?.let {
+            tvSongName.text = song.title
+            tvSinger.text = song.artist
+            ivAlbumCover.setImageResource(song.largeImageID)
+        }
     }
 
     private fun initPlayClick() {

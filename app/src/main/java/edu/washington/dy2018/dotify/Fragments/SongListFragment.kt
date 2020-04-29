@@ -18,6 +18,7 @@ class SongListFragment:Fragment() {
     private var onSongClickedListener: OnSongClickListener? = null
 
     companion object {
+        val TAG: String = SongListFragment::class.java.simpleName
         const val ARG_SONGLIST = "arg_songlist"
     }
 
