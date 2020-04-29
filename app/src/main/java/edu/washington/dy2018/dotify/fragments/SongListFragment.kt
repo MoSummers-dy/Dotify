@@ -93,6 +93,8 @@ class SongListFragment:Fragment() {
     fun shuffleList() {
         val newSongs = listOfSongs.toMutableList().apply { shuffle() }
         songAdapter.shuffleUpdate(newSongs)
+        // store the new list ordering
+        listOfSongs = newSongs
         // scroll to the top of the screen on every shuffle
         rvSongs.scrollToPosition(0)
     }
