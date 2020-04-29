@@ -16,49 +16,38 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
     private var listOfSongs = SongDataProvider.getAllSongs().toList()
     private var currSong: Song? = null
 
-    companion object {
-        private const val SONG_LIST = "song_list"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_main)
 
-        /*
-        if (savedInstanceState != null) {
-            with(savedInstanceState) {
-                val pastSongList = getParcelableArrayList<Song>(SONG_LIST)
-                pastSongList?.let {
-                    listOfSongs = pastSongList.toList()
-                }
-            }
-        }
-
-         */
-
-        val songListFragment= SongListFragment()
-        val argumentSongList = Bundle().apply {
-            putParcelableArrayList(SongListFragment.ARG_SONGLIST, ArrayList(listOfSongs))
-        }
-        songListFragment.arguments = argumentSongList
-
+        val songListFragment:SongListFragment
         if (!hasBackStack() && getSongListFragment() == null) {
+            songListFragment= SongListFragment()
+
+            val argumentSongList = Bundle().apply {
+                putParcelableArrayList(SongListFragment.ARG_SONGLIST, ArrayList(listOfSongs))
+            }
+            songListFragment.arguments = argumentSongList
+
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragContainer, songListFragment)
+                .add(R.id.fragContainer, songListFragment, SongListFragment.TAG)
                 .commit()
+
+            initShuffleClick(songListFragment)
+
         } else if (hasBackStack()) {
+            songListFragment = getSongListFragment() as SongListFragment
+            initShuffleClick(songListFragment)
             miniPlayer.visibility = View.GONE
+
+        } else {
+            songListFragment = getSongListFragment() as SongListFragment
+            initShuffleClick(songListFragment)
         }
 
-        initShuffleClick(songListFragment)
         initMiniPlayerClick()
         initBackButton()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelableArrayList(SONG_LIST, ArrayList(listOfSongs))
-        super.onSaveInstanceState(outState)
     }
 
     private fun hasBackStack() =  supportFragmentManager.backStackEntryCount > 0

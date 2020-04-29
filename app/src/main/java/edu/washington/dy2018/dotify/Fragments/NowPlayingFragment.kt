@@ -1,6 +1,7 @@
 package edu.washington.dy2018.dotify.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class NowPlayingFragment:Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("life", "on create song detail")
 
         if (savedInstanceState != null) {
             with(savedInstanceState) {
@@ -53,6 +55,7 @@ class NowPlayingFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i("life", "on view created song detail")
 
         initSongInfo(currSong)
         initPlayClick()
