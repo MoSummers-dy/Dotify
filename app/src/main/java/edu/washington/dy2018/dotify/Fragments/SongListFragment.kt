@@ -10,7 +10,6 @@ import com.ericchee.songdataprovider.Song
 import edu.washington.dy2018.dotify.OnSongClickListener
 import edu.washington.dy2018.dotify.R
 import edu.washington.dy2018.dotify.SongListAdapter
-import kotlinx.android.synthetic.main.fragment_songs_list.*
 import kotlinx.android.synthetic.main.fragment_songs_list.rvSongs
 
 class SongListFragment:Fragment() {
