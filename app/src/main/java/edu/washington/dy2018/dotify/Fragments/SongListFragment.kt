@@ -16,10 +16,12 @@ class SongListFragment:Fragment() {
     private lateinit var songAdapter: SongListAdapter
     private lateinit var listOfSongs: List<Song>
     private var onSongClickedListener: OnSongClickListener? = null
+    private var currSong : Song? = null
 
     companion object {
         val TAG: String = SongListFragment::class.java.simpleName
         const val ARG_SONGLIST = "arg_songlist"
+        const val SELECTED_SONG = "selected_song"
     }
 
     override fun onAttach(context: Context) {
@@ -33,12 +35,23 @@ class SongListFragment:Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                currSong = getParcelable(SELECTED_SONG)
+            }
+        }
+
         arguments?.let { args ->
             val songList = args.getParcelableArrayList<Song>(ARG_SONGLIST)
             if (songList != null) {
-                this.listOfSongs = songList
+                this.listOfSongs = songList.toList()
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(SELECTED_SONG, currSong)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onCreateView(
@@ -55,12 +68,18 @@ class SongListFragment:Fragment() {
         songAdapter = SongListAdapter(listOfSongs)
         rvSongs.adapter = songAdapter
 
+        val immutableSong = currSong
+        immutableSong?.let {
+            onSongClickedListener?.onSongClicked(immutableSong)
+        }
+
         initAdapterClick()
     }
 
     private fun initAdapterClick() {
         songAdapter.onSongClickListener = {selectedSong: Song ->
             onSongClickedListener?.onSongClicked(selectedSong)
+            currSong = selectedSong
         }
     }
 

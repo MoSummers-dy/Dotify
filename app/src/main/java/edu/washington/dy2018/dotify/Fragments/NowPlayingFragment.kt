@@ -39,7 +39,6 @@ class NowPlayingFragment:Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(PLAY_NUM, randomPlay)
-
         super.onSaveInstanceState(outState)
     }
 
