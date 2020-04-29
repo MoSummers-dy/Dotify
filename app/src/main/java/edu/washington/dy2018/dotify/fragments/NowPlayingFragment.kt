@@ -35,7 +35,7 @@ class NowPlayingFragment:Fragment() {
         }
 
         arguments?.let { args ->
-            currSong = args.getParcelable<Song>(SONG_KEY)
+            currSong = args.getParcelable(SONG_KEY)
         }
     }
 
