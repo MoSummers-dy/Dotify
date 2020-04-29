@@ -12,22 +12,35 @@ import kotlinx.android.synthetic.main.fragment_song_detail.*
 import kotlin.random.Random
 
 class NowPlayingFragment:Fragment() {
-    private var randomPlay: Int? = null
+    private var randomPlay = 0
     private var currSong: Song? = null
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val SONG_KEY = "SONG_KEY"
+        private const val PLAY_NUM = "play_num"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        randomPlay = Random.nextInt(1000, 10000)
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                 randomPlay = getInt(PLAY_NUM, -1)
+            }
+        } else {
+            randomPlay = Random.nextInt(1000, 10000)
+        }
 
         arguments?.let { args ->
             currSong = args.getParcelable<Song>(SONG_KEY)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(PLAY_NUM, randomPlay)
+
+        super.onSaveInstanceState(outState)
     }
 
     override fun onCreateView(
@@ -59,7 +72,7 @@ class NowPlayingFragment:Fragment() {
 
     private fun initPlayClick() {
         btnPlay.setOnClickListener{
-            randomPlay = randomPlay?.plus(1)
+            randomPlay += 1
             tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
         }
     }
