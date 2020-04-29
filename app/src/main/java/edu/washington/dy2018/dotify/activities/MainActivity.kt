@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify.Activities
+package edu.washington.dy2018.dotify.activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify.Activities
+package edu.washington.dy2018.dotify.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
-import edu.washington.dy2018.dotify.Activities.MainActivity.Companion.SONG_KEY
+import edu.washington.dy2018.dotify.activities.MainActivity.Companion.SONG_KEY
 import edu.washington.dy2018.dotify.R
 import edu.washington.dy2018.dotify.SongListAdapter
 import kotlinx.android.synthetic.main.activity_song_list.*

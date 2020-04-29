@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify.Activities
+package edu.washington.dy2018.dotify.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -6,8 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
-import edu.washington.dy2018.dotify.Fragments.NowPlayingFragment
-import edu.washington.dy2018.dotify.Fragments.SongListFragment
+import edu.washington.dy2018.dotify.fragments.NowPlayingFragment
+import edu.washington.dy2018.dotify.fragments.SongListFragment
 import edu.washington.dy2018.dotify.OnSongClickListener
 import edu.washington.dy2018.dotify.R
 import kotlinx.android.synthetic.main.activity_song_main.*

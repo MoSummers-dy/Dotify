@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify.Fragments
+package edu.washington.dy2018.dotify.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -35,7 +35,6 @@ class SongListFragment:Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i("life", "on create song list")
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState != null) {
@@ -43,30 +42,17 @@ class SongListFragment:Fragment() {
                 currSong = getParcelable(SELECTED_SONG)
                 val oldSongList = getParcelableArrayList<Song>(OLD_SONGLIST)
                 oldSongList?.let {
-                    this.listOfSongs = oldSongList.toList()
+                    listOfSongs = oldSongList.toList()
                 }
             }
         } else {
             arguments?.let { args ->
                 val songList = args.getParcelableArrayList<Song>(ARG_SONGLIST)
-                if (songList != null) {
-                    this.listOfSongs = songList.toList()
+                songList?.let {
+                    listOfSongs = songList.toList()
                 }
             }
         }
-
-        /*
-            if (savedInstanceState != null) {
-                with(savedInstanceState) {
-                    val pastSongList = getParcelableArrayList<Song>(SONG_LIST)
-                    pastSongList?.let {
-                        listOfSongs = pastSongList.toList()
-                    }
-                }
-            }
-
-             */
-
 
     }
 
@@ -110,11 +96,6 @@ class SongListFragment:Fragment() {
         songAdapter.shuffleUpdate(newSongs)
         // scroll to the top of the screen on every shuffle
         rvSongs.scrollToPosition(0)
-    }
-
-     override fun onDestroy() {
-         Log.i("life", "on destroy song list")
-        super.onDestroy()
     }
 
 }

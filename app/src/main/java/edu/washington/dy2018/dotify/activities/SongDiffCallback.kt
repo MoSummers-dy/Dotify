@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify.Activities
+package edu.washington.dy2018.dotify.activities
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ericchee.songdataprovider.Song

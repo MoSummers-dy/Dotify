@@ -1,4 +1,4 @@
-package edu.washington.dy2018.dotify.Fragments
+package edu.washington.dy2018.dotify.fragments
 
 import android.os.Bundle
 import android.util.Log

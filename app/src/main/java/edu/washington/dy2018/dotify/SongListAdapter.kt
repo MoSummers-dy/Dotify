@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
-import edu.washington.dy2018.dotify.Activities.SongDiffCallback
+import edu.washington.dy2018.dotify.activities.SongDiffCallback
 
 class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
     private var listOfSongs: List<Song> = initialListOfSongs.toList()
