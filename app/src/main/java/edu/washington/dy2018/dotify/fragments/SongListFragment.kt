@@ -20,9 +20,9 @@ class SongListFragment:Fragment() {
 
     companion object {
         val TAG: String = SongListFragment::class.java.simpleName
-        const val ARG_SONGLIST = "arg_songlist"
+        const val ARG_SONGLIST = "arg_song_list"
         const val SELECTED_SONG = "selected_song"
-        const val OLD_SONGLIST = "old_songlist"
+        const val OLD_SONGLIST = "old_song_list"
     }
 
     override fun onAttach(context: Context) {
@@ -37,6 +37,7 @@ class SongListFragment:Fragment() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState != null) {
+            // preserve the previous song list and selected song
             with(savedInstanceState) {
                 currSong = getParcelable(SELECTED_SONG)
                 val oldSongList = getParcelableArrayList<Song>(OLD_SONGLIST)
@@ -45,6 +46,7 @@ class SongListFragment:Fragment() {
                 }
             }
         } else {
+            // grab information from the main activity
             arguments?.let { args ->
                 val songList = args.getParcelableArrayList<Song>(ARG_SONGLIST)
                 songList?.let {
@@ -52,7 +54,6 @@ class SongListFragment:Fragment() {
                 }
             }
         }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -77,6 +78,7 @@ class SongListFragment:Fragment() {
 
         val immutableSong = currSong
         immutableSong?.let {
+            // if there is previous selected song, show the text in the mini player
             onSongClickedListener?.onSongClicked(immutableSong)
         }
 
@@ -93,8 +95,10 @@ class SongListFragment:Fragment() {
     fun shuffleList() {
         val newSongs = listOfSongs.toMutableList().apply { shuffle() }
         songAdapter.shuffleUpdate(newSongs)
+
         // store the new list ordering
         listOfSongs = newSongs
+
         // scroll to the top of the screen on every shuffle
         rvSongs.scrollToPosition(0)
     }
