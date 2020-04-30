@@ -13,7 +13,6 @@ import edu.washington.dy2018.dotify.R
 import kotlinx.android.synthetic.main.activity_song_main.*
 
 class SongMainActivity : AppCompatActivity(), OnSongClickListener {
-    private var listOfSongs = SongDataProvider.getAllSongs().toList()
     private var currSong: Song? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,30 +21,32 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
 
         val songListFragment:SongListFragment
         if (!hasBackStack() && getSongListFragment() == null) {
+            // if this the first time open up the app, create new song list fragment
             songListFragment= SongListFragment()
 
+            // grab the song list information
             val argumentSongList = Bundle().apply {
-                putParcelableArrayList(SongListFragment.ARG_SONGLIST, ArrayList(listOfSongs))
+                putParcelableArrayList(SongListFragment.ARG_SONGLIST, ArrayList(SongDataProvider.getAllSongs().toList()))
             }
             songListFragment.arguments = argumentSongList
 
+            // set up the song list fragment in the manager, add song list frag tag
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragContainer, songListFragment, SongListFragment.TAG)
                 .commit()
 
-            initShuffleClick(songListFragment)
-
-        } else if (hasBackStack()) {
-            songListFragment = getSongListFragment() as SongListFragment
-            initShuffleClick(songListFragment)
-            miniPlayer.visibility = View.GONE
-
         } else {
+            // get the existing song list fragment
             songListFragment = getSongListFragment() as SongListFragment
-            initShuffleClick(songListFragment)
+
+            if (hasBackStack()) {
+                // if there is an nowPlaying fragment, hide miniPlayer
+                miniPlayer.visibility = View.GONE
+            }
         }
 
+        initShuffleClick(songListFragment)
         initMiniPlayerClick()
         initBackButton()
     }
@@ -62,12 +63,16 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
 
     private fun initMiniPlayerClick() {
         miniPlayer.setOnClickListener {
+            // when click, hide the miniPlayer
             miniPlayer.visibility = View.GONE
 
             var songDetailFragment = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
 
             if (songDetailFragment == null) {
+                // if there is no existing song detail fragment, create a new one
                 songDetailFragment = NowPlayingFragment()
+
+                // grab the selected song, and passed to the detail fragment
                 val argumentSong = Bundle().apply {
                     putParcelable(NowPlayingFragment.SONG_KEY, currSong)
                 }
@@ -79,8 +84,8 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
                     .addToBackStack(NowPlayingFragment.TAG)
                     .commit()
 
-                Log.i("Diana", "${supportFragmentManager.backStackEntryCount}")
             } else {
+                // if there is existing song detail fragment, update the selected song
                 songDetailFragment.updateSong(currSong)
             }
         }
@@ -103,6 +108,7 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        // when goes back to the song list fragment, show the mini player
         supportFragmentManager.popBackStack()
         miniPlayer.visibility = View.VISIBLE
         return super.onSupportNavigateUp()
