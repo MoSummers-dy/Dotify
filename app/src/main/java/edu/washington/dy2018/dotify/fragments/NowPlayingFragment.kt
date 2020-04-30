@@ -1,7 +1,6 @@
 package edu.washington.dy2018.dotify.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,21 +9,21 @@ import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 import edu.washington.dy2018.dotify.R
 import kotlinx.android.synthetic.main.fragment_song_detail.*
+import kotlin.properties.Delegates
 import kotlin.random.Random
 
 class NowPlayingFragment:Fragment() {
-    private var randomPlay = 0
+    private var randomPlay by Delegates.notNull<Int>()
     private var currSong: Song? = null
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
-        const val SONG_KEY = "SONG_KEY"
+        const val SONG_KEY = "song_key"
         private const val PLAY_NUM = "play_num"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("life", "on create song detail")
 
         if (savedInstanceState != null) {
             with(savedInstanceState) {
@@ -55,7 +54,6 @@ class NowPlayingFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("life", "on view created song detail")
 
         initSongInfo(currSong)
         initPlayClick()

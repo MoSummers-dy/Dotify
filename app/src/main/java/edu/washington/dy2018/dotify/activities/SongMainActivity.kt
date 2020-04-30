@@ -1,7 +1,6 @@
 package edu.washington.dy2018.dotify.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ericchee.songdataprovider.Song
