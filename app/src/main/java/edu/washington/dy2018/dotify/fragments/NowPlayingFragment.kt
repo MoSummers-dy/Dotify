@@ -26,6 +26,7 @@ class NowPlayingFragment:Fragment() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState != null) {
+            // restore the play number if there is one stored
             with(savedInstanceState) {
                  randomPlay = getInt(PLAY_NUM, -1)
             }
