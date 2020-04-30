@@ -22,8 +22,8 @@ Rotation once
 Song detail
 <img src="./screenshots/hw3/playnum_l.png" width="420" height="200" />
 
-Add play num
+Rotation second time
 <img src="./screenshots/hw3/addplaynum_p.png" width="200" height="420" />
 
-Rotation second time
+Add play num
 <img src="./screenshots/hw3/playnum_p.png" width="200" height="420" />
