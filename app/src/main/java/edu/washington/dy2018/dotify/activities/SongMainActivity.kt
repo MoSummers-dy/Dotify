@@ -18,10 +18,9 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_main)
 
-        val songListFragment:SongListFragment
         if (!hasBackStack() && getSongListFragment() == null) {
             // if this the first time open up the app, create new song list fragment
-            songListFragment= SongListFragment()
+            val songListFragment= SongListFragment()
 
             // grab the song list information
             val argumentSongList = Bundle().apply {
@@ -35,17 +34,12 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
                 .add(R.id.fragContainer, songListFragment, SongListFragment.TAG)
                 .commit()
 
-        } else {
-            // get the existing song list fragment
-            songListFragment = getSongListFragment() as SongListFragment
-
-            if (hasBackStack()) {
-                // if there is an nowPlaying fragment, hide miniPlayer
-                miniPlayer.visibility = View.GONE
-            }
+        } else if (hasBackStack()){
+            // if there is an nowPlaying fragment, hide miniPlayer
+            miniPlayer.visibility = View.GONE
         }
 
-        initShuffleClick(songListFragment)
+        initShuffleClick()
         initMiniPlayerClick()
         initBackButton()
     }
@@ -54,8 +48,9 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
     private fun getSongListFragment() = supportFragmentManager.findFragmentByTag(SongListFragment.TAG)
 
 
-    private fun initShuffleClick(songListFrag: SongListFragment) {
+    private fun initShuffleClick() {
         btnShuffle.setOnClickListener{
+            val songListFrag = getSongListFragment() as SongListFragment
             songListFrag.shuffleList()
         }
     }
