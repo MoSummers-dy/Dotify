@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
-import edu.washington.dy2018.dotify.OnSongClickListener
-import edu.washington.dy2018.dotify.R
-import edu.washington.dy2018.dotify.SongListAdapter
+import com.ericchee.songdataprovider.SongDataProvider
+import edu.washington.dy2018.dotify.*
 import kotlinx.android.synthetic.main.fragment_songs_list.rvSongs
 
 class SongListFragment:Fragment() {
@@ -17,16 +16,20 @@ class SongListFragment:Fragment() {
     private lateinit var listOfSongs: List<Song>
     private var onSongClickedListener: OnSongClickListener? = null
     private var currSong : Song? = null
+    private lateinit var songApiManager: SongApiManager
 
     companion object {
         val TAG: String = SongListFragment::class.java.simpleName
         const val ARG_SONGLIST = "arg_song_list"
         const val SELECTED_SONG = "selected_song"
         const val OLD_SONGLIST = "old_song_list"
+
+        fun getInstance() = SongListFragment()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        songApiManager = (context.applicationContext as DotifyApp).songApiMangaer
 
         if (context is OnSongClickListener) {
             onSongClickedListener = context
@@ -40,12 +43,15 @@ class SongListFragment:Fragment() {
             // preserve the previous song list and selected song
             with(savedInstanceState) {
                 currSong = getParcelable(SELECTED_SONG)
+                /*
                 val oldSongList = getParcelableArrayList<Song>(OLD_SONGLIST)
                 oldSongList?.let {
                     listOfSongs = oldSongList.toList()
                 }
+
+                 */
             }
-        } else {
+        } /* else {
             // grab information from the main activity
             arguments?.let { args ->
                 val songList = args.getParcelableArrayList<Song>(ARG_SONGLIST)
@@ -54,11 +60,13 @@ class SongListFragment:Fragment() {
                 }
             }
         }
+        */
+        this.listOfSongs = songApiManager.listOfSongs
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putParcelable(SELECTED_SONG, currSong)
-        outState.putParcelableArrayList(OLD_SONGLIST, ArrayList(listOfSongs))
+        // outState.putParcelableArrayList(OLD_SONGLIST, ArrayList(listOfSongs))
         super.onSaveInstanceState(outState)
     }
 
@@ -93,11 +101,17 @@ class SongListFragment:Fragment() {
     }
 
     fun shuffleList() {
+        /*
         val newSongs = listOfSongs.toMutableList().apply { shuffle() }
         songAdapter.shuffleUpdate(newSongs)
 
         // store the new list ordering
         listOfSongs = newSongs
+
+         */
+        songApiManager.shuffle()
+        listOfSongs = songApiManager.listOfSongs
+        songAdapter.shuffleUpdate(listOfSongs)
 
         // scroll to the top of the screen on every shuffle
         rvSongs.scrollToPosition(0)

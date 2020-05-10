@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
+import edu.washington.dy2018.dotify.DotifyApp
 import edu.washington.dy2018.dotify.fragments.NowPlayingFragment
 import edu.washington.dy2018.dotify.fragments.SongListFragment
 import edu.washington.dy2018.dotify.OnSongClickListener
@@ -18,15 +18,11 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_main)
 
+        val dotifyApp = application as DotifyApp
+
         if (!hasBackStack() && getSongListFragment() == null) {
             // if this the first time open up the app, create new song list fragment
-            val songListFragment= SongListFragment()
-
-            // grab the song list information
-            val argumentSongList = Bundle().apply {
-                putParcelableArrayList(SongListFragment.ARG_SONGLIST, ArrayList(SongDataProvider.getAllSongs().toList()))
-            }
-            songListFragment.arguments = argumentSongList
+            val songListFragment= SongListFragment.getInstance()
 
             // set up the song list fragment in the manager, add song list frag tag
             supportFragmentManager
@@ -64,13 +60,7 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
 
             if (songDetailFragment == null) {
                 // if there is no existing song detail fragment, create a new one
-                songDetailFragment = NowPlayingFragment()
-
-                // grab the selected song, and passed to the detail fragment
-                val argumentSong = Bundle().apply {
-                    putParcelable(NowPlayingFragment.SONG_KEY, currSong)
-                }
-                songDetailFragment.arguments = argumentSong
+                songDetailFragment = NowPlayingFragment.getInstance(currSong)
 
                 supportFragmentManager
                     .beginTransaction()
