@@ -1,11 +1,11 @@
 package edu.washington.dy2018.dotify.activities
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ericchee.songdataprovider.Song
+import edu.washington.dy2018.dotify.model.IndividualSong
 
 class SongDiffCallback (
-    private val oldSongs: List<Song>,
-    private val newSongs: List<Song>
+    private val oldSongs: List<IndividualSong>,
+    private val newSongs: List<IndividualSong>
 ): DiffUtil.Callback (){
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldSong = oldSongs[oldItemPosition]
@@ -23,8 +23,8 @@ class SongDiffCallback (
         return (oldSong.title == newSong.title
                 && oldSong.artist == newSong.artist
                 && oldSong.durationMillis == newSong.durationMillis
-                && oldSong.smallImageID == newSong.smallImageID
-                && oldSong.largeImageID == newSong.largeImageID)
+                && oldSong.smallImageURL == newSong.smallImageURL
+                && oldSong.largeImageURL == newSong.largeImageURL)
     }
 
 }

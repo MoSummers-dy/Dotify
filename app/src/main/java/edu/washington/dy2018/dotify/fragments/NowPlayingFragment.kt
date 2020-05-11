@@ -8,20 +8,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 import edu.washington.dy2018.dotify.R
+import edu.washington.dy2018.dotify.model.IndividualSong
 import kotlinx.android.synthetic.main.fragment_song_detail.*
 import kotlin.properties.Delegates
 import kotlin.random.Random
 
 class NowPlayingFragment:Fragment() {
     private var randomPlay by Delegates.notNull<Int>()
-    private var currSong: Song? = null
+    private var currSong: IndividualSong? = null
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val SONG_KEY = "song_key"
         private const val PLAY_NUM = "play_num"
 
-        fun getInstance(song: Song?) = NowPlayingFragment().apply {
+        fun getInstance(song: IndividualSong    ?) = NowPlayingFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(SONG_KEY, song)
             }
@@ -68,12 +69,12 @@ class NowPlayingFragment:Fragment() {
         initNextClick()
     }
 
-    private fun initSongInfo(song: Song?) {
+    private fun initSongInfo(song: IndividualSong?) {
         tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
         song?.let {
             tvSongName.text = song.title
             tvSinger.text = song.artist
-            ivAlbumCover.setImageResource(song.largeImageID)
+            // ivAlbumCover.setImageResource(song.largeImageID)
         }
     }
 
@@ -96,12 +97,12 @@ class NowPlayingFragment:Fragment() {
         }
     }
 
-    fun updateSong(song: Song?) {
+    fun updateSong(song: IndividualSong?) {
         tvPlaysNum.text = getString(R.string.play_messages, randomPlay)
         song?.let {
             tvSongName.text = song.title
             tvSinger.text = song.artist
-            ivAlbumCover.setImageResource(song.largeImageID)
+            // ivAlbumCover.setImageResource(song.largeImageID)
         }
     }
 }

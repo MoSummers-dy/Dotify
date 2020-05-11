@@ -7,13 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ericchee.songdataprovider.Song
 import edu.washington.dy2018.dotify.activities.SongDiffCallback
+import edu.washington.dy2018.dotify.model.IndividualSong
 
-class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
-    private var listOfSongs: List<Song> = initialListOfSongs.toList()
-    var onSongClickListener: ((song: Song) -> Unit) ?= null
-    var onSongLongClickListener: ((song: Song) -> Unit) ?= null
+class SongListAdapter(initialListOfSongs: List<IndividualSong>) :RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
+    private var listOfSongs: List<IndividualSong> = initialListOfSongs.toList()
+    var onSongClickListener: ((song: IndividualSong) -> Unit) ?= null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
@@ -28,7 +27,7 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
         holder.bind(song)
     }
 
-    fun shuffleUpdate(newSongs: List<Song>) {
+    fun shuffleUpdate(newSongs: List<IndividualSong>) {
         // animated way of updating the songs list
         val callback = SongDiffCallback(
             listOfSongs,
@@ -39,7 +38,7 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
         listOfSongs = newSongs
     }
 
-    fun removeUpdate(newSongs: List<Song>) {
+    fun removeUpdate(newSongs: List<IndividualSong>) {
         listOfSongs = newSongs
         notifyDataSetChanged()
     }
@@ -49,18 +48,13 @@ class SongListAdapter(initialListOfSongs: List<Song>) :RecyclerView.Adapter<Song
         private val tvArtistName = itemView.findViewById<TextView>(R.id.tvArtistName)
         private val ivSongCover = itemView.findViewById<ImageView>(R.id.ivSongImage)
 
-        fun bind(song: Song) {
+        fun bind(song: IndividualSong) {
             tvSongName.text = song.title
             tvArtistName.text = song.artist
-            ivSongCover.setImageResource(song.smallImageID)
+            // ivSongCover.setImageResource(song.smallImageID)
 
             itemView.setOnClickListener{
                 onSongClickListener?.invoke(song)
-            }
-
-            itemView.setOnLongClickListener{
-                onSongLongClickListener?.invoke(song)
-                true
             }
         }
     }

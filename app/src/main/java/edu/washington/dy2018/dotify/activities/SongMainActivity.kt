@@ -3,16 +3,16 @@ package edu.washington.dy2018.dotify.activities
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.ericchee.songdataprovider.Song
 import edu.washington.dy2018.dotify.DotifyApp
 import edu.washington.dy2018.dotify.fragments.NowPlayingFragment
 import edu.washington.dy2018.dotify.fragments.SongListFragment
 import edu.washington.dy2018.dotify.OnSongClickListener
 import edu.washington.dy2018.dotify.R
+import edu.washington.dy2018.dotify.model.IndividualSong
 import kotlinx.android.synthetic.main.activity_song_main.*
 
 class SongMainActivity : AppCompatActivity(), OnSongClickListener {
-    private var currSong: Song? = null
+    private var currSong: IndividualSong? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,7 +98,7 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
         return super.onSupportNavigateUp()
     }
 
-    override fun onSongClicked(song: Song) {
+    override fun onSongClicked(song: IndividualSong) {
         tvSelectedSongInfo.text = getString(R.string.selected_info, song.title, song.artist)
         currSong = song
     }

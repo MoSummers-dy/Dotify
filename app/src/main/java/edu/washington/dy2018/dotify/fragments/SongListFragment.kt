@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
 import edu.washington.dy2018.dotify.*
+import edu.washington.dy2018.dotify.model.IndividualSong
 import kotlinx.android.synthetic.main.fragment_songs_list.rvSongs
 
 class SongListFragment:Fragment() {
     private lateinit var songAdapter: SongListAdapter
-    private lateinit var listOfSongs: List<Song>
+    private lateinit var listOfSongs: List<IndividualSong>
     private var onSongClickedListener: OnSongClickListener? = null
-    private var currSong : Song? = null
+    private var currSong : IndividualSong? = null
     private lateinit var songApiManager: SongApiManager
 
     companion object {
@@ -43,25 +42,20 @@ class SongListFragment:Fragment() {
             // preserve the previous song list and selected song
             with(savedInstanceState) {
                 currSong = getParcelable(SELECTED_SONG)
-                /*
-                val oldSongList = getParcelableArrayList<Song>(OLD_SONGLIST)
-                oldSongList?.let {
-                    listOfSongs = oldSongList.toList()
-                }
-
-                 */
-            }
-        } /* else {
-            // grab information from the main activity
-            arguments?.let { args ->
-                val songList = args.getParcelableArrayList<Song>(ARG_SONGLIST)
-                songList?.let {
-                    listOfSongs = songList.toList()
-                }
             }
         }
-        */
+
         this.listOfSongs = songApiManager.listOfSongs
+        /*
+        songApiManager.getListOfSongs({
+            val songList = it.songs
+            this.listOfSongs = songList
+        },
+            {
+                Log.i(TAG, "error")
+        })
+
+         */
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -94,7 +88,7 @@ class SongListFragment:Fragment() {
     }
 
     private fun initAdapterClick() {
-        songAdapter.onSongClickListener = {selectedSong: Song ->
+        songAdapter.onSongClickListener = {selectedSong: IndividualSong ->
             onSongClickedListener?.onSongClicked(selectedSong)
             currSong = selectedSong
         }

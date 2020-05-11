@@ -1,13 +1,47 @@
 package edu.washington.dy2018.dotify
 
-import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
+import android.content.Context
+import android.util.Log
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+import edu.washington.dy2018.dotify.model.AllSongs
+import edu.washington.dy2018.dotify.model.IndividualSong
 
-class SongApiManager {
-    var listOfSongs: List<Song>
+class SongApiManager(context: Context) {
+    private val queue: RequestQueue = Volley.newRequestQueue(context)
+    var listOfSongs: List<IndividualSong>
 
     init {
-        listOfSongs = SongDataProvider.getAllSongs().toList()
+        listOfSongs = listOf(
+            IndividualSong("1588825540885InTheEnd_LinkinPark",
+                "In The End",
+                "Linkin Park",
+                193790,
+                "https://picsum.photos/seed/InTheEnd/50",
+                "https://picsum.photos/seed/InTheEnd/256")
+        )
+    }
+
+    fun getListOfSongs(onSongListReady: (AllSongs) -> Unit, onError: (() -> Unit)? = null) {
+        val songListURL = "https://raw.githubusercontent.com/echeeUW/codesnippets/master/musiclibrary.json"
+
+        val request = StringRequest(
+            Request.Method.GET, songListURL,
+            { response ->
+                // success
+                val gson = Gson()
+                val allSongs = gson.fromJson(response, AllSongs::class.java)
+                onSongListReady(allSongs)
+            }, {
+                Log.i("DY", "error when fetching")
+                // onError?.invoke()
+            }
+        )
+
+        queue.add(request)
     }
 
     fun shuffle() {

@@ -1,7 +1,7 @@
 package edu.washington.dy2018.dotify
 
-import com.ericchee.songdataprovider.Song
+import edu.washington.dy2018.dotify.model.IndividualSong
 
 interface OnSongClickListener {
-    fun onSongClicked(song: Song)
+    fun onSongClicked(song: IndividualSong)
 }
