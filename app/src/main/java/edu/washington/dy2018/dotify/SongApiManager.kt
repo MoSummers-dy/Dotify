@@ -35,6 +35,7 @@ class SongApiManager(context: Context) {
                 val gson = Gson()
                 val allSongs = gson.fromJson(response, AllSongs::class.java)
                 onSongListReady(allSongs)
+                Log.i("DY", "fetch success")
             }, {
                 Log.i("DY", "error when fetching")
                 // onError?.invoke()
