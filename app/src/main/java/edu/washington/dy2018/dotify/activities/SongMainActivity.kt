@@ -3,7 +3,6 @@ package edu.washington.dy2018.dotify.activities
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import edu.washington.dy2018.dotify.DotifyApp
 import edu.washington.dy2018.dotify.fragments.NowPlayingFragment
 import edu.washington.dy2018.dotify.fragments.SongListFragment
 import edu.washington.dy2018.dotify.OnSongClickListener
