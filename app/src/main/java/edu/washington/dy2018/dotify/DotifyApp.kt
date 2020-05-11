@@ -6,20 +6,24 @@ import edu.washington.dy2018.dotify.model.IndividualSong
 
 class DotifyApp:Application() {
     lateinit var songApiMangaer: SongApiManager
-    lateinit var listOfSongs: List<IndividualSong>
-
+    // var listOfSongs: List<IndividualSong> ?= null
 
     override fun onCreate() {
         super.onCreate()
         // load manager
         songApiMangaer = SongApiManager(this)
 
+        /**
+         *
         songApiMangaer.getListOfSongs({ allSongs ->
-            val songList = allSongs.songs
-            listOfSongs = songList
+        val songList = allSongs.songs
+        listOfSongs = songList
         },
-            {
-                Log.i("DY", "error")
-            })
+        {
+        Log.i("DY", "error")
+        })
+         */
+
+
     }
 }

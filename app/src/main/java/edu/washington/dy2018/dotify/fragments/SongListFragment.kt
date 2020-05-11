@@ -1,7 +1,9 @@
 package edu.washington.dy2018.dotify.fragments
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ class SongListFragment:Fragment() {
     private lateinit var listOfSongs: List<IndividualSong>
     private var onSongClickedListener: OnSongClickListener? = null
     private var currSong : IndividualSong? = null
+    // private var app: Application? = null
     private lateinit var songApiManager: SongApiManager
 
     companion object {
@@ -29,6 +32,10 @@ class SongListFragment:Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         songApiManager = (context.applicationContext as DotifyApp).songApiMangaer
+        val songList = songApiManager.listOfSongs
+        songList.forEach {
+            Log.i("DY", "fragment attach " + it.toString())
+        }
 
         if (context is OnSongClickListener) {
             onSongClickedListener = context
@@ -45,7 +52,12 @@ class SongListFragment:Fragment() {
             }
         }
 
-        this.listOfSongs = songApiManager.listOfSongs
+        // val app = context?.applicationContext as DotifyApp
+        listOfSongs = songApiManager.listOfSongs
+        listOfSongs.forEach {
+            Log.i("DY", it.toString())
+        }
+
         /*
         songApiManager.getListOfSongs({
             val songList = it.songs

@@ -18,8 +18,6 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_main)
 
-        val dotifyApp = application as DotifyApp
-
         if (!hasBackStack() && getSongListFragment() == null) {
             // if this the first time open up the app, create new song list fragment
             val songListFragment= SongListFragment.getInstance()
