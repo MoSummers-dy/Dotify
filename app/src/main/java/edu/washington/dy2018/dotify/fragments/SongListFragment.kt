@@ -32,10 +32,6 @@ class SongListFragment:Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         songApiManager = (context.applicationContext as DotifyApp).songApiMangaer
-        val songList = songApiManager.listOfSongs
-        songList.forEach {
-            Log.i("DY", "fragment attach " + it.toString())
-        }
 
         if (context is OnSongClickListener) {
             onSongClickedListener = context
@@ -52,27 +48,12 @@ class SongListFragment:Fragment() {
             }
         }
 
-        // val app = context?.applicationContext as DotifyApp
         listOfSongs = songApiManager.listOfSongs
-        listOfSongs.forEach {
-            Log.i("DY", it.toString())
-        }
 
-        /*
-        songApiManager.getListOfSongs({
-            val songList = it.songs
-            this.listOfSongs = songList
-        },
-            {
-                Log.i(TAG, "error")
-        })
-
-         */
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putParcelable(SELECTED_SONG, currSong)
-        // outState.putParcelableArrayList(OLD_SONGLIST, ArrayList(listOfSongs))
         super.onSaveInstanceState(outState)
     }
 
@@ -89,6 +70,11 @@ class SongListFragment:Fragment() {
 
         songAdapter = SongListAdapter(listOfSongs)
         rvSongs.adapter = songAdapter
+
+        songApiManager.getListOfSongs({ songList ->
+            listOfSongs = songApiManager.listOfSongs
+            songAdapter.shuffleUpdate(listOfSongs)
+        }, {})
 
         val immutableSong = currSong
         immutableSong?.let {
@@ -107,14 +93,6 @@ class SongListFragment:Fragment() {
     }
 
     fun shuffleList() {
-        /*
-        val newSongs = listOfSongs.toMutableList().apply { shuffle() }
-        songAdapter.shuffleUpdate(newSongs)
-
-        // store the new list ordering
-        listOfSongs = newSongs
-
-         */
         songApiManager.shuffle()
         listOfSongs = songApiManager.listOfSongs
         songAdapter.shuffleUpdate(listOfSongs)

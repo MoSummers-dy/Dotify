@@ -25,24 +25,12 @@ class SongApiManager(context: Context) {
                 "https://picsum.photos/seed/InTheEnd/256")
         )
 
-        this.getListOfSongs({ allSongs ->
-            val songList = allSongs.songs
+        this.getListOfSongs({songList ->
             listOfSongs = songList
-            Log.i("DY", "get success")
-            listOfSongs.forEach {
-                Log.i("DY", "inside loop " + it.toString())
-            }
-        },
-            {
-                Log.i("DY", "get error")
-            })
-
-        listOfSongs.forEach {
-            Log.i("DY", "manager " + it.toString())
-        }
+        }, {})
     }
 
-    fun getListOfSongs(onSongListReady: (AllSongs) -> Unit, onError: (() -> Unit)? = null) {
+    fun getListOfSongs(onSongListReady: (List<IndividualSong>) -> Unit, onError: (() -> Unit)? = null) {
         val songListURL = "https://raw.githubusercontent.com/echeeUW/codesnippets/master/musiclibrary.json"
 
         val request = StringRequest(
@@ -51,7 +39,7 @@ class SongApiManager(context: Context) {
                 // success
                 val gson = Gson()
                 val allSongs = gson.fromJson(response, AllSongs::class.java)
-                onSongListReady(allSongs)
+                onSongListReady(allSongs.songs)
                 Log.i("DY", "fetch success")
             }, {
                 Log.i("DY", "error when fetching")

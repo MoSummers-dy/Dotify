@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import edu.washington.dy2018.dotify.activities.SongDiffCallback
 import edu.washington.dy2018.dotify.model.IndividualSong
 
@@ -51,7 +52,7 @@ class SongListAdapter(initialListOfSongs: List<IndividualSong>) :RecyclerView.Ad
         fun bind(song: IndividualSong) {
             tvSongName.text = song.title
             tvArtistName.text = song.artist
-            // ivSongCover.setImageResource(song.smallImageID)
+            Picasso.get().load(song.smallImageURL).into(ivSongCover)
 
             itemView.setOnClickListener{
                 onSongClickListener?.invoke(song)
