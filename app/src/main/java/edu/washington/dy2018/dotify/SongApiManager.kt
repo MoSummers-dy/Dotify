@@ -40,7 +40,6 @@ class SongApiManager(private val context: Context) {
                 val gson = Gson()
                 val allSongs = gson.fromJson(response, AllSongs::class.java)
                 onSongListReady(allSongs.songs)
-                Toast.makeText(context, "Fetch Success", Toast.LENGTH_SHORT).show()
             }, {
                 Toast.makeText(context, "Sorry, Fetch Failed", Toast.LENGTH_SHORT).show()
             }
