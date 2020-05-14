@@ -1,7 +1,6 @@
 package edu.washington.dy2018.dotify
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -11,10 +10,9 @@ import com.google.gson.Gson
 import edu.washington.dy2018.dotify.model.AllSongs
 import edu.washington.dy2018.dotify.model.IndividualSong
 
-class SongApiManager(context: Context) {
+class SongApiManager(private val context: Context) {
     private val queue: RequestQueue = Volley.newRequestQueue(context)
-    private val context=context
-    lateinit var listOfSongs: List<IndividualSong>
+    var listOfSongs: List<IndividualSong>
 
     init {
 
@@ -42,11 +40,9 @@ class SongApiManager(context: Context) {
                 val gson = Gson()
                 val allSongs = gson.fromJson(response, AllSongs::class.java)
                 onSongListReady(allSongs.songs)
-                // Log.i("DY", "fetch success")
                 Toast.makeText(context, "Fetch Success", Toast.LENGTH_SHORT).show()
             }, {
-                // Log.i("DY", "error when fetching")
-                Toast.makeText(context, "Sorry, error happens when fetching", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Sorry, Fetch Failed", Toast.LENGTH_SHORT).show()
             }
         )
 

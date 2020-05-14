@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import edu.washington.dy2018.dotify.DotifyApp
 import edu.washington.dy2018.dotify.fragments.NowPlayingFragment
 import edu.washington.dy2018.dotify.fragments.SongListFragment
 import edu.washington.dy2018.dotify.OnSongClickListener
 import edu.washington.dy2018.dotify.R
-import edu.washington.dy2018.dotify.SongListenListener
 import edu.washington.dy2018.dotify.model.IndividualSong
 import kotlinx.android.synthetic.main.activity_song_main.*
 
-class SongMainActivity : AppCompatActivity(), OnSongClickListener, SongListenListener {
+class SongMainActivity : AppCompatActivity(), OnSongClickListener {
     private var currSong: IndividualSong? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +54,17 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener, SongListenLis
         miniPlayer.setOnClickListener {
             // when click, hide the miniPlayer
             miniPlayer.visibility = View.GONE
+
+            // shown number of songs listened
+            val songCount = ++(applicationContext as DotifyApp).listenSongNum
+            if (songCount <= 1) {
+                Toast.makeText(this, "You have listened: $songCount song!", Toast.LENGTH_SHORT).show()
+            } else if (songCount <= 10) {
+                Toast.makeText(this, "You have listened: $songCount songs!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Wooo, $songCount songs already!", Toast.LENGTH_SHORT).show()
+            }
+
 
             var songDetailFragment = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
 
@@ -100,9 +111,5 @@ class SongMainActivity : AppCompatActivity(), OnSongClickListener, SongListenLis
     override fun onSongClicked(song: IndividualSong) {
         tvSelectedSongInfo.text = getString(R.string.selected_info, song.title, song.artist)
         currSong = song
-    }
-
-    override fun onSongListened(song : IndividualSong) {
-        Toast.makeText(this, "You have listened ", Toast.LENGTH_SHORT).show()
     }
 }

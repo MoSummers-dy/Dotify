@@ -39,11 +39,6 @@ class SongListAdapter(initialListOfSongs: List<IndividualSong>) :RecyclerView.Ad
         listOfSongs = newSongs
     }
 
-    fun removeUpdate(newSongs: List<IndividualSong>) {
-        listOfSongs = newSongs
-        notifyDataSetChanged()
-    }
-
     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val tvSongName = itemView.findViewById<TextView>(R.id.tvSongName)
         private val tvArtistName = itemView.findViewById<TextView>(R.id.tvArtistName)

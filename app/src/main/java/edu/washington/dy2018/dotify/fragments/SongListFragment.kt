@@ -29,7 +29,7 @@ class SongListFragment:Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        songApiManager = (context.applicationContext as DotifyApp).songApiMangaer
+        songApiManager = (context.applicationContext as DotifyApp).songApiManager
 
         if (context is OnSongClickListener) {
             onSongClickedListener = context
